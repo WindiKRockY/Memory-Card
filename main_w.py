@@ -1,13 +1,12 @@
-from  PyQt5.QtCore import Qt 
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QSpinBox, QHBoxLayout, QRadioButton, QButtonGroup,QGroupBox 
+from PyQt5.QtCore import Qt 
+from PyQt5.QtWidgets import QApplication, QRadioButton, QButtonGroup, QGroupBox, QSpinBox, QHBoxLayout, QWidget, QPushButton, QLabel, QVBoxLayout 
  
 menu_btn = QPushButton("Меню") 
 rest_btn = QPushButton("Відпочити") 
  
 time_spin = QSpinBox() 
 time_spin.setValue(3) 
- 
-time_lb = QLabel("Хвилини") 
+time_lb = QLabel("хвилин") 
  
 row1 = QHBoxLayout() 
 row1.addWidget(menu_btn) 
@@ -16,50 +15,51 @@ row1.addWidget(rest_btn)
 row1.addWidget(time_spin) 
 row1.addWidget(time_lb) 
  
-main_line = QVBoxLayout() 
-main_line.addLayout(row1) 
+question_lb = QLabel("Питання") 
  
-que_lb = QLabel("Питання") 
- 
-ans1 = QRadioButton("А") 
-ans2 = QRadioButton("Б") 
-ans3 = QRadioButton("В") 
-ans4 = QRadioButton("Г") 
+btn1 = QRadioButton("варіант1") 
+btn2 = QRadioButton("варіант2") 
+btn3 = QRadioButton("варіант3") 
+btn4 = QRadioButton("варіант4") 
  
 row2 = QHBoxLayout() 
-row2.addWidget(ans1) 
-row2.addWidget(ans2) 
-row2.addWidget(ans3) 
-row2.addWidget(ans4) 
- 
-main_line.addWidget(que_lb) 
- 
 radio_group = QButtonGroup() 
+radio_group.addButton(btn1) 
+radio_group.addButton(btn2) 
+radio_group.addButton(btn3) 
+radio_group.addButton(btn4) 
  
-radio_group.addButton(ans1) 
-radio_group.addButton(ans2) 
-radio_group.addButton(ans3) 
-radio_group.addButton(ans4) 
  
-main_line.addLayout(row2)
+group_box = QGroupBox("Варіанти перекладу") 
+col1 = QVBoxLayout() 
+col2 = QVBoxLayout() 
+ 
+col1.addWidget(btn1) 
+col1.addWidget(btn2) 
+col2.addWidget(btn3) 
+col2.addWidget(btn4) 
+ 
+row2.addLayout(col1) 
+row2.addLayout(col2) 
+ 
+group_box.setLayout(row2) 
+ 
+answer_btn = QPushButton() 
+ 
+result_box = QGroupBox("Результат")
+result_text = QLabel("Правильно")
+right_answer_text= QLabel("Відповідь")
 
-group = QGroupBox("Варіанти відповідей")
+result_line = QVBoxLayout()
+result_line.addWidget(result_text)
+result_line.addWidget(right_answer_text,alignment=Qt.AlignCenter,stretch=2)
 
-cal1 = QVBoxLayout()
-cal2 = QVBoxLayout()
+result_box.setLayout(result_line)
+result_box.hide()
 
-cal1.addWidget(ans1)
-cal1.addWidget(ans2)
-cal2.addWidget(ans3)
-cal2.addWidget(ans4)
+main_line = QVBoxLayout() 
+main_line.addLayout(row1, stretch = 1) 
+main_line.addWidget(question_lb, stretch = 2, alignment = Qt.AlignCenter) 
+main_line.addWidget(result_box, stretch = 6) 
+main_line.addWidget(answer_btn, stretch = 3)
 
-row1.addLayout(cal1)
-row1.addLayout(cal2)
-
-group.setLayout(row2)
-
-#main_line = QVBoxLayout()
-main_line.addLayout(row1)
-main_line.addWidget(que_lb)
-main_line.addWidget(group)
-main_line.addWidget(ans)
