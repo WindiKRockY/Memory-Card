@@ -21,3 +21,4 @@ v_line.addWidget(succes_lb)
 v_line.addWidget(back_btn)
 
 menu_win.setLayout(v_line)
+
